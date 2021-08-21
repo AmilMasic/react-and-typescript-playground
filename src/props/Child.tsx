@@ -1,13 +1,23 @@
 interface ChildProps {
   color: string;
+  onClick: () => void;
 };
 
 // first way to declare components
-export const Child = ({ color }: ChildProps) => {
-  return <div>Hi there!</div>
+// you cannot directly add children
+export const Child = ({ color, onClick }: ChildProps) => {
+  return <div>
+    {color}
+    <button onCLick={onClick}>Click me</button>
+  </div>;
 };
 
 // second way to declare components
+// this is better since it autoincludes features under the hood
+// like passing children components
 export const ChildAsFC: React.FC<ChildProps> = ({ color }) => {
-  return <div>{color}</div>
+  return <div>
+    {color}
+    <button onCLick={onClick}>Click me</button>
+  </div>
 };
